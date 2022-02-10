@@ -47,7 +47,10 @@ exports.getUserWithId = getUserWithId;
  * @return {Promise<{}>} A promise to the user.
  */
 const addUser = user => {
-  
+  const { name, password, email } = user;
+  return pool.query(`INSERT INTO users (name, password, email) VALUES ($1, $2, $3) RETURNING *;`, [name, password, email])
+    .then(result => result.rows[0])
+    .catch(err => console.log(err.message));
   // const userId = Object.keys(users).length + 1;
   // user.id = userId;
   // users[userId] = user;
