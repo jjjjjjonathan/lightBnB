@@ -20,9 +20,7 @@ const pool = new Pool({
 const getUserWithEmail = email => {
   return pool.query(`SELECT * FROM users WHERE email = $1;`, [email])
     .then(result => result.rows[0])
-    .catch(err => {
-      console.log(err.message);
-    });
+    .catch(err => console.log(err.message));
 };
 exports.getUserWithEmail = getUserWithEmail;
 
@@ -34,9 +32,7 @@ exports.getUserWithEmail = getUserWithEmail;
 const getUserWithId = id => {
   return pool.query(`SELECT * FROM users WHERE id = $1;`, [id])
     .then(result => result.rows[0])
-    .catch(err => {
-      console.log(err.message);
-    });
+    .catch(err => console.log(err.message));
 };
 exports.getUserWithId = getUserWithId;
 
@@ -51,10 +47,6 @@ const addUser = user => {
   return pool.query(`INSERT INTO users (name, password, email) VALUES ($1, $2, $3) RETURNING *;`, [name, password, email])
     .then(result => result.rows[0])
     .catch(err => console.log(err.message));
-  // const userId = Object.keys(users).length + 1;
-  // user.id = userId;
-  // users[userId] = user;
-  // return Promise.resolve(user);
 };
 exports.addUser = addUser;
 
@@ -81,9 +73,7 @@ exports.getAllReservations = getAllReservations;
 const getAllProperties = (options, limit = 10) => {
   return pool.query(`SELECT * FROM properties LIMIT $1`, [limit])
     .then(result => result.rows)
-    .catch(err => {
-      console.log(err.message);
-    });
+    .catch(err => console.log(err.message));
 };
 exports.getAllProperties = getAllProperties;
 
