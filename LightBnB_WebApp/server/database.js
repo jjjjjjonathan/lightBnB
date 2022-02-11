@@ -133,10 +133,5 @@ const addProperty = property => {
   return pool.query(queryString, queryParams)
     .then(res => res.rows[0])
     .catch(err => console.log(err.message));
-
-  // const propertyId = Object.keys(properties).length + 1;
-  // property.id = propertyId;
-  // properties[propertyId] = property;
-  // return Promise.resolve(property);
 };
 exports.addProperty = addProperty;
